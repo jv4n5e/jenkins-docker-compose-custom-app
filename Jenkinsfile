@@ -3,9 +3,9 @@ pipeline {
     stages {
         stage('Run app from docker-compose file') {
             steps {
-                sh 'docker compose run -d custom_alpine'
-                sh 'docker compose run -d --service-ports custom_postgres'
-                sh 'docker compose run -d --service-ports custom_nginx'
+                sh 'docker compose run -d --name custom_alpine custom_alpine'
+                sh 'docker compose run -d --service-ports --name custom_postgres custom_postgres'
+                sh 'docker compose run -d --service-ports --name custom_nginx custom_nginx'
             }
         }
         stage('Approval to kill'){
