@@ -1,7 +1,7 @@
 version : '3'
 
 services:
-  distro:
+  custom_app:
     image: alpine
     restart : always
     container_name: custom_alpine
