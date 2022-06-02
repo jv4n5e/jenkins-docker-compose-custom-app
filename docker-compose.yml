@@ -1,8 +1,16 @@
 version : '3'
 
 services:
-  custom_app:
+  custom_alpine:
     image: alpine
     restart : always
     container_name: custom_alpine
     entrypoint: tail -f /dev/null
+  
+  custom_postgres:
+    image: postgres:latest
+    container_name: custom_postgres
+    ports:
+     - "5432:5432"
+    volumes:
+     - ../dump:/tmp/

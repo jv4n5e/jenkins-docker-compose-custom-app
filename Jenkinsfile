@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Run app from docker-compose file') {
             steps {
-                sh 'docker compose run -d --name custom_app custom_app'
+                sh 'docker compose run -d --name custom_alpine custom_alpine'
+                sh 'docker compose run -d --name custom_postgres --service-ports custom_postgres'
             }
         }
         stage('Approval to kill'){
