@@ -4,13 +4,11 @@ services:
   custom_alpine:
     image: alpine
     restart : always
-    container_name: custom_alpine
     entrypoint: tail -f /dev/null
   
   custom_postgres:
     image: postgres:latest
     restart: always
-    container_name: custom_postgres
     secrets:
       - db-password
     volumes:
@@ -24,7 +22,6 @@ services:
   custom_nginx:
     image: nginx
     restart: always
-    container_name: custom_nginx
     ports:
       - "80:80"
     volumes:
