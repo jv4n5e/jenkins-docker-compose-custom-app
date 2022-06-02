@@ -6,6 +6,13 @@ pipeline {
                 sh 'docker compose run -d --name custom_app custom_app'
             }
         }
+        stage('Approval to kill'){
+            steps {
+                input "Can we stop and remove the running containers?"
+                sh 'docker compose stop'
+                sh 'docker compose rm -f'
+            }
+        }
     }
     post('If fail, stop and remove containers.'){
         failure {
