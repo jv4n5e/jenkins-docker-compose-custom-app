@@ -9,8 +9,28 @@ services:
   
   custom_postgres:
     image: postgres:latest
+    restart: always
     container_name: custom_postgres
     ports:
      - "5432:5432"
     volumes:
      - ../dump:/tmp/
+  
+  custom_nginx:
+    image: nginx
+    restart: always
+    container_name: custom_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./mysite.template:/etc/nginx/conf.d/mysite.template
+    environment:
+      - NGINX_HOST=sample.custom_alpine
+      - NGINX_port=80
+    links:
+      - custom_postgres
+      - custom_alpine
+
+volumes:
+  data:
+    external: true
