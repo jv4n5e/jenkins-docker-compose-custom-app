@@ -25,7 +25,7 @@ services:
     volumes:
       - ./mysite.template:/etc/nginx/conf.d/mysite.template
     environment:
-      - NGINX_HOST=sample.custom_alpine
+      - NGINX_HOST=sample.com
       - NGINX_port=80
     links:
       - custom_postgres
