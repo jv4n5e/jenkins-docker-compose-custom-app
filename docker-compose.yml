@@ -11,10 +11,15 @@ services:
     image: postgres:latest
     restart: always
     container_name: custom_postgres
-    ports:
-     - "5432:5432"
+    secrets:
+      - db-password
     volumes:
-     - ../dump:/tmp/
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=example
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    expose:
+      - 5432
   
   custom_nginx:
     image: nginx
@@ -32,5 +37,5 @@ services:
       - custom_alpine
 
 volumes:
-  data:
+  db-data:
     external: true
